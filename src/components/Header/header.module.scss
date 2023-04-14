@@ -1,9 +1,11 @@
 .container{
-  height: 5rem;
+  height: 10.625rem;
 }
 
 .content {
-  height: 5rem;
+  margin: 0 auto;
+  max-width: 720px;
+  height: 10.625rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
