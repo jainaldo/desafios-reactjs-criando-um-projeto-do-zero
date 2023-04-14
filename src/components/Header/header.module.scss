@@ -1,1 +1,10 @@
-// TODO
+.container{
+  height: 5rem;
+}
+
+.content {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
