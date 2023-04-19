@@ -11,6 +11,7 @@ import { getPrismicClient } from '../services/prismic';
 import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
 import Header from '../components/Header';
+import { formatDate } from '../utils';
 
 interface Post {
   uid?: string;
@@ -42,11 +43,7 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
     const newPosts = data.results.map(post => {
       return {
         uid: post.uid,
-        first_publication_date: format(
-          new Date(post.last_publication_date),
-          'dd MMM yyyy',
-          { locale: ptBR }
-        ),
+        first_publication_date: post.first_publication_date,
         data: {
           title: post.data.title,
           subtitle: post.data.subtitle,
@@ -62,7 +59,7 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
   return (
     <>
       <Head>
-        <title>Home | space traveling</title>
+        <title>Home | spacetraveling</title>
       </Head>
 
       <Header />
@@ -77,7 +74,7 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
                 <div className={styles.time}>
                   <time>
                     <FiCalendar />
-                    {post.first_publication_date}
+                    {formatDate(post.first_publication_date)}
                   </time>
                   <p>
                     <FiUser />
@@ -109,11 +106,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const posts = postsResponse.results.map(post => {
     return {
       uid: post.uid,
-      first_publication_date: format(
-        new Date(post.last_publication_date),
-        'dd MMM yyyy',
-        { locale: ptBR }
-      ),
+      first_publication_date: post.first_publication_date,
       data: {
         title: post.data.title,
         subtitle: post.data.subtitle,
